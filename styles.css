@@ -1,0 +1,267 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* only block horizontal scroll */
+  height: 100%;
+  width: 100%;
+}
+
+
+body {
+    -webkit-app-region: drag;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    height: 100vh;
+    cursor: default;
+    transition: background 0.3s;
+}
+
+/* ✅ Wrapper creates consistent padding all around */
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 40px; /* Uniform space around the container */
+    box-sizing: border-box;
+}
+
+#app {
+    cursor: crosshair;
+}
+
+#color-container {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px 30px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: border 0.3s;
+    cursor: crosshair;
+
+
+    min-width: 260px; /* ✅ Wider container to fit HSL in one line */
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+p:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* 🎯 Sleek Full Circle Color Picker */
+#color-picker {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    appearance: none;
+}
+
+#color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#color-picker::-moz-color-swatch {
+    border-radius: 50%;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#color-picker:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Toast Message */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+
+
+
+
+
+
+
+/* Help icon */
+#help-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #555;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    z-index: 100;
+    user-select: none;
+    font-weight: bold;
+  }
+  
+
+  :root {
+    --tooltip-bg: #2e2e2e;
+    --tooltip-border: white;
+  }
+  
+  /* Tooltip container */
+  .tooltip {
+    position: absolute;
+    background-color: var(--tooltip-bg);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    max-width: 220px;
+    z-index: 999;
+    border: 1px solid var(--tooltip-border);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Fade states */
+  .tooltip.hidden {
+    display: none;
+  }
+  
+  .tooltip.fade-in {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .tooltip.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* ARROW BASE STYLE */
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--tooltip-bg);
+    transform: rotate(45deg);
+    box-sizing: border-box;
+  }
+  
+  /* Arrow on the LEFT (tooltip pointing right) */
+  .tooltip[data-position="right"]::after {
+    top: 50%;
+    left: -6px;
+    transform: translateY(-50%) rotate(45deg);
+    border-left: 1px solid var(--tooltip-border);
+    border-bottom: 1px solid var(--tooltip-border);
+  }
+  
+  /* Arrow on the RIGHT (tooltip pointing left) */
+  .tooltip[data-position="left"]::after {
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%) rotate(45deg);
+    border-top: 1px solid var(--tooltip-border);
+    border-right: 1px solid var(--tooltip-border);
+  }
+  
+  /* Arrow on the TOP (tooltip pointing down) */
+  .tooltip[data-position="bottom"]::after {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-top: 1px solid var(--tooltip-border);
+    border-bottom: 1px solid var(--tooltip-border);
+  }
+  
+  /* Arrow on the BOTTOM (tooltip pointing up) */
+  .tooltip[data-position="top"]::after {
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-left: 1px solid var(--tooltip-border);
+    border-bottom: 1px solid var(--tooltip-border);
+  }
+  
+  #help-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .seo-banner p {
+    all: unset;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  
+  .seo-banner h1 {
+    font-size: 15px;
+    margin: 0;
+    color: #aaaaaa;
+  }
+  
+  .seo-banner p {
+    margin: 0.5rem 0;
+  }
+  

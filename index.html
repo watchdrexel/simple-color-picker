@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Simple Color Picker – HEX, RGB, HSL Converter</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Free and easy-to-use online color picker. Instantly get HEX, RGB, and HSL values. Ideal for designers, developers, and artists.">
+  <meta name="keywords" content="color picker, hex code, rgb colors, color picker online, html color picker, hex code to rgb, color picker from image, color picker chrome, color picker procreate, hex code to paint color, hex code to cmyk, color converter, hex color picker, rgb code, color picker html tool, pick color from screen">
+  <meta name="author" content="Your Name">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/icon.ico">
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Simple Color Picker – HEX, RGB, HSL Converter">
+  <meta property="og:description" content="Use this free color picker tool to explore and convert colors in HEX, RGB, and HSL formats.">
+  <meta property="og:url" content="https://thesimplecolorpicker.com">
+  <meta property="og:image" content="https://thesimplecolorpicker.com/assets/preview.jpg">
+  
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Simple Color Picker">
+  <meta name="twitter:description" content="Pick and convert colors with ease – HEX, RGB, HSL.">
+  <meta name="twitter:image" content="https://thesimplecolorpicker.com/assets/preview.jpg">
+
+
+  <!-- Structured Data -->
+</head>
+<body>
+  <button id="help-toggle">?</button>
+
+  <main id="wrapper">
+    <div id="color-container">
+      <p id="hex-code">HEX: #000000</p>
+      <p id="rgb-code">RGB: (0, 0, 0)</p>
+      <p id="hsl-code">HSL: (0, 0%, 0%)</p>
+      <input type="color" id="color-picker" aria-label="Color Picker Input">
+    </div>
+  </main>
+
+  <!-- Subtle SEO Content (visible but minimal) -->
+  <div id="branding-info" class="seo-banner">
+    <h1>The Simple Color Picker – HEX, RGB, HSL Converter</h1>
+    <p>Pick and copy colors easily with our free online color picker tool. Ideal for creatives, developers, and anyone working with color codes.</p>
+  </div>
+  
+  <!-- Tooltips -->
+  <div id="tip-click-box" class="tooltip" data-position="left">
+    Click anywhere in the box to activate the color picker
+  </div>
+  <div id="tip-color-circle" class="tooltip" data-position="right">
+    Click on the circle to adjust color selection
+  </div>
+  <div id="tip-copy-values" class="tooltip" data-position="right">
+    Click the HEX, RGB, or HSL button to copy to clipboard
+  </div>
+
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
